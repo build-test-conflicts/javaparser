@@ -74,6 +74,4 @@ public class ClassOrInterfaceDeclarationContext extends AbstractJavaParserContex
   public ResolvedReferenceTypeDeclaration getDeclaration(){
     return JavaParserFacade.get(typeSolver).getTypeDeclaration(this.wrappedNode);
   }
-  public ClassOrInterfaceDeclarationContext(){
-  }
 }
