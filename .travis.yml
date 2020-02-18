@@ -1,15 +1,27 @@
-sudo: false
+
+sudo: required
 language: java
-install: mvn -B install -DskipTests=true
-script: mvn -B test -P AlsoSlowTests
+
 jdk:
-  - openjdk11
-notifications:
-  webhooks:
-    urls:
-      - "https://webhooks.gitter.im/e/ec3127975d8a2b8f11d0"
-    on_success: always  # options: [always|never|change] default: always
-    on_failure: always  # options: [always|never|change] default: always
-after_success:
-  - mvn -B test jacoco:report coveralls:report
-# http://lint.travis-ci.org/ validator
+  - openjdk8
+
+script:
+  - mvn clean compile assembly:single
+
+before_deploy:
+    - mkdir MiningBuild
+    - find . -name '*.jar' -exec cp {} ./MiningBuild \;
+    - cd /home/travis/build/build-test-conflicts/javaparser/MiningBuild
+    - tar -zcvf result.tar.gz *
+deploy:
+  provider: releases
+  api_key:
+    secure: $GITHUB_TOKEN
+  file: result.tar.gz
+  name: fetchjar-0f5add60ae08a6311d3b0751d7dab5f54e74d3f6
+  file_glob: true
+  overwrite: true
+  skip_cleanup: true
+  on:
+    all_branches: true 
+            
