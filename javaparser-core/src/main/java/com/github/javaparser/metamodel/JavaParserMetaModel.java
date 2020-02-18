@@ -864,7 +864,7 @@ public static  ModuleExportsDirectiveMetaModel moduleExportsDirectiveMetaModel =
 public static  ModuleProvidesDirectiveMetaModel moduleProvidesDirectiveMetaModel = new ModuleProvidesDirectiveMetaModel(Optional.of(moduleDirectiveMetaModel));
 public static  ModuleUsesDirectiveMetaModel moduleUsesDirectiveMetaModel = new ModuleUsesDirectiveMetaModel(Optional.of(moduleDirectiveMetaModel));
 public static  ModuleOpensDirectiveMetaModel moduleOpensDirectiveMetaModel = new ModuleOpensDirectiveMetaModel(Optional.of(moduleDirectiveMetaModel));
-public static {
+static {
     initializeNodeMetaModels();
     initializePropertyMetaModels();
     initializeConstructorParameters();
